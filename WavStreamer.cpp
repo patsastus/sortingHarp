@@ -12,7 +12,7 @@ const int SAMPLE_RATE = 44100;
 const double PI = 3.14159265358979323846;
 const double NOTE_DURATION = 0.05;
 
-void WavStreamer::init(const std::string &filename) {
+void WavStreamer::init(const std::string &filename, bool json) {
   std::lock_guard<std::mutex> lock(wavMutex);
   wavFile.open(filename, std::ios::binary);
 
@@ -36,8 +36,10 @@ void WavStreamer::init(const std::string &filename) {
   wavFile.write("data", 4);
   writeBinary<uint32_t>(wavFile, 0);
 
-  jsonLogFile.open("events.json");
-  jsonLogFile << "[\n";
+  if (json) {
+    jsonLogFile.open("events.json");
+    jsonLogFile << "[\n";
+  }
 }
 
 void WavStreamer::writeTones(int val1, int val2) {
@@ -78,7 +80,7 @@ void WavStreamer::writeTones(int val1, int val2) {
   totalSamples += samplesToWrite;
 }
 
-void WavStreamer::close() {
+void WavStreamer::close(bool json) {
   std::lock_guard<std::mutex> lock(wavMutex);
   if (!wavFile.is_open())
     return;
@@ -91,8 +93,10 @@ void WavStreamer::close() {
   wavFile.seekp(40, std::ios::beg);
   writeBinary<uint32_t>(wavFile, dataSize);
   wavFile.close();
-  jsonLogFile << "{}\n]\n";
-  jsonLogFile.close();
+  if (json) {
+    jsonLogFile << "{}\n]\n";
+    jsonLogFile.close();
+  }
 }
 
 double WavStreamer::valueToFreq(int value) {

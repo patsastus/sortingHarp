@@ -8,8 +8,8 @@ extern int gMin, gMax;
 
 class WavStreamer {
 public:
-  static void init(const std::string &filename);
-  static void close();
+  static void init(const std::string &filename, bool makeJSON);
+  static void close(bool makeJSON);
   static void writeTones(int val1, int val2);
   static void logState(const std::string &jsonState);
   static void logComparison(int val1, int val2);

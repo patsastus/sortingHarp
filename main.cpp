@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
               << std::endl;
     return 1;
   }
-  WavStreamer::init("ford_johnson_sort.wav");
+  WavStreamer::init("ford_johnson_sort.wav", true);
   std::vector<PMergeMe::vectorNode> copy;
   try {
     std::vector<unsigned int> inputVector = PMergeMe::parseInput<>(argc, argv);
@@ -60,17 +60,17 @@ int main(int argc, char *argv[]) {
     std::cerr << "Error: " << e.what() << std::endl;
     return 1;
   }
-  WavStreamer::close();
+  WavStreamer::close(true);
   std::cout
       << "Performed " << gComparisons
       << " comparisons during merge-insert sorting. Worst-case allowance :"
       << getFJComparisonLimit(static_cast<size_t>(argc - 1)) << std::endl;
 
   // do the sorting with standard sort
-  // WavStreamer::init("standard_sort.wav");
-  // gComparisons = 0;
-  // std::sort(copy.begin(), copy.end());
-  // WavStreamer::close();
+  WavStreamer::init("standard_sort.wav", false);
+  gComparisons = 0;
+  std::sort(copy.begin(), copy.end());
+  WavStreamer::close(false);
 
   std::cout << "Performed " << gComparisons
             << " comparisons during standard sorting." << std::endl;
