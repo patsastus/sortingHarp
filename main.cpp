@@ -67,10 +67,10 @@ int main(int argc, char *argv[]) {
       << getFJComparisonLimit(static_cast<size_t>(argc - 1)) << std::endl;
 
   // do the sorting with standard sort
-  WavStreamer::init("standard_sort.wav");
-  gComparisons = 0;
-  std::sort(copy.begin(), copy.end());
-  WavStreamer::close();
+  // WavStreamer::init("standard_sort.wav");
+  // gComparisons = 0;
+  // std::sort(copy.begin(), copy.end());
+  // WavStreamer::close();
 
   std::cout << "Performed " << gComparisons
             << " comparisons during standard sorting." << std::endl;
