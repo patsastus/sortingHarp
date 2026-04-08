@@ -12,7 +12,9 @@ bool PMergeMe::vectorNode::operator<(vectorNode const &other) const{
 ## Quick demo
 
 
-https://github.com/user-attachments/assets/64634547-dbfe-4bf4-b0db-eb5fe728ca5a
+
+https://github.com/user-attachments/assets/7f8594f3-1af4-4f14-abd7-d34b805c73bd
+
 
 
 ## Making sounds from numbers
