@@ -9,6 +9,11 @@ bool PMergeMe::vectorNode::operator<(vectorNode const &other) const{
     return this->value < other.value;
 }
 ```
+## Quick demo
+
+
+https://github.com/user-attachments/assets/64634547-dbfe-4bf4-b0db-eb5fe728ca5a
+
 
 ## Making sounds from numbers
 Sounds *are* just numbers in a row written to a .wav file, but it's not quite as simple as that single line of code makes it seem. Behind the `WAVFILE` macro lives a class that takes each number, and the information of the minimum and maximum of the set being sorted, and maps the number to a tone on the pentatonic scale, with the lowest value mapping to a **C1**, and the highest to a **C6**, so a map of 26 notes. 
